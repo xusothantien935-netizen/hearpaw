@@ -517,3 +517,6 @@ html{scroll-behavior:smooth;scroll-padding-top:100px}body{background:#fffefa;col
     transition: none !important;
   }
 }
+.social-contact.chat-open {
+  display: none !important;
+}
