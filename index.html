@@ -229,4 +229,30 @@
 </div><label class="payment-option"><input type="radio" name="paymentMethod" value="cod"><span class="payment-icon cod-icon">₫</span><span><b>Thanh toán khi nhận hàng</b><small>Phương thức mô phỏng</small></span></label><button id="confirmPayment" class="btn btn-dark full-width" type="button">Xác nhận đặt hàng demo</button></section><p id="checkoutMessage" class="form-status" aria-live="polite"></p><small class="fine-print">QR ngân hàng được tạo theo số tiền đơn hàng. Website chưa tự động xác minh tiền đã vào tài khoản; đơn hàng chỉ được xác nhận sau khi kiểm tra giao dịch.</small></div></div>
   <script src="script.js"></script>
 </body>
+  <script>
+  const socialContact = document.querySelector('.social-contact');
+  const chatPanel = document.getElementById('chatPanel');
+  const chatToggle = document.getElementById('chatToggle');
+  const chatClose = document.getElementById('chatClose');
+
+  function updateSocialContact() {
+    const isChatOpen = chatPanel && getComputedStyle(chatPanel).display !== 'none';
+    socialContact?.classList.toggle('chat-open', isChatOpen);
+  }
+
+  // Theo dõi trạng thái hiển thị của chatbot
+  if (chatPanel && socialContact) {
+    const observer = new MutationObserver(updateSocialContact);
+
+    observer.observe(chatPanel, {
+      attributes: true,
+      attributeFilter: ['class', 'style']
+    });
+
+    chatToggle?.addEventListener('click', updateSocialContact);
+    chatClose?.addEventListener('click', updateSocialContact);
+
+    updateSocialContact();
+  }
+</script>
 </html>
